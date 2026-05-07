@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Villa Lumière — Moradia de Luxo com Vista Mar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:    #F7F2EA;
+      --cream-dk: #EDE6D8;
+      --brown:    #1C1610;
+      --brown-md: #4A3F32;
+      --gold:     #B8905C;
+      --gold-lt:  #D4AF7A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--brown);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ── */
+    .serif { font-family: 'Cormorant Garamond', serif; }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(247, 242, 234, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,144,92,0.15);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.125rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brown);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brown-md);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--brown);
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta:active { transform: translateY(0); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(10,8,5,0.35) 0%,
+          rgba(10,8,5,0.10) 35%,
+          rgba(10,8,5,0.65) 75%,
+          rgba(10,8,5,0.85) 100%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(184,144,92,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 75% 20%, rgba(255,230,180,0.08) 0%, transparent 60%);
+    }
+
+    /* Lens-flare light streak */
+    .hero-overlay::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: -10%;
+      width: 55%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,220,140,0.25), transparent);
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 5rem 6rem 4.5rem;
+      color: white;
+    }
+
+    .hero-content .eyebrow {
+      color: rgba(212,175,122,0.95);
+      text-shadow: 0 0 24px rgba(184,144,92,0.5);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      color: white;
+      margin-top: 0.5rem;
+      max-width: 14ch;
+      text-shadow:
+        0 2px 40px rgba(0,0,0,0.6),
+        0 0 80px rgba(184,144,92,0.15);
+    }
+
+    .hero-content h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(230,205,165,1);
+      text-shadow:
+        0 0 60px rgba(184,144,92,0.45),
+        0 2px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Warm glow pool behind the text block */
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 20% 90%, rgba(140,100,50,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.625rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll svg {
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50%       { transform: translateY(6px); opacity: 1; }
+    }
+
+    /* ── Gold divider ── */
+    .gold-line {
+      width: 3rem;
+      height: 1px;
+      background: var(--gold);
+      display: block;
+      margin: 1.5rem 0;
+    }
+
+    .gold-line-center {
+      margin: 1.5rem auto;
+    }
+
+    /* ── Intro strip ── */
+    .intro-strip {
+      padding: 6rem 6rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .intro-strip h2 {
+      font-size: clamp(2rem, 3.5vw, 3.25rem);
+      font-weight: 300;
+    }
+
+    .intro-strip p {
+      font-size: 0.9375rem;
+      color: var(--brown-md);
+      line-height: 1.85;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      border-top: 1px solid var(--cream-dk);
+      border-bottom: 1px solid var(--cream-dk);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .stat-item {
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      border-right: 1px solid var(--cream-dk);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--brown);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.625rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* ── Split sections ── */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+    }
+
+    .split-section.reverse { direction: rtl; }
+    .split-section.reverse > * { direction: ltr; }
+
+    .split-img {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .split-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .split-img:hover img { transform: scale(1.04); }
+
+    .split-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(184,144,92,0.08), transparent 60%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .split-text {
+      padding: 5rem 5rem 5rem 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--cream);
+    }
+
+    .split-section.reverse .split-text {
+      padding: 5rem 6rem 5rem 5rem;
+    }
+
+    .split-text h2 {
+      font-size: clamp(1.75rem, 2.5vw, 2.75rem);
+      font-weight: 300;
+      margin-top: 0.5rem;
+    }
+
+    .split-text p {
+      font-size: 0.9375rem;
+      color: var(--brown-md);
+      line-height: 1.85;
+      margin-top: 1.25rem;
+      max-width: 38ch;
+    }
+
+    .split-text .feature-list {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .split-text .feature-list li {
+      font-size: 0.8125rem;
+      letter-spacing: 0.06em;
+      color: var(--brown-md);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .split-text .feature-list li::before {
+      content: '';
+      width: 1.5rem;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── Full-width image ── */
+    .full-img {
+      height: 70vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .full-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
+    .full-img .caption {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ── Gallery ── */
+    .gallery-section {
+      padding: 6rem;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-header h2 {
+      font-size: clamp(1.75rem, 2.5vw, 2.75rem);
+      font-weight: 300;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 300px);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    /* ── Floor plans ── */
+    .plans-section {
+      padding: 6rem;
+      background: var(--cream-dk);
+    }
+
+    .plans-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .plans-header h2 {
+      font-size: clamp(1.75rem, 2.5vw, 2.75rem);
+      font-weight: 300;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .plan-card {
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .plan-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .plan-card-label {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--cream-dk);
+      font-size: 0.6875rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brown-md);
+      font-weight: 500;
+    }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      position: relative;
+      overflow: hidden;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-section img,
+    .cta-section video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,22,16,0.62);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .cta-content .eyebrow { color: var(--gold-lt); }
+
+    .cta-content h2 {
+      font-size: clamp(2rem, 4vw, 3.75rem);
+      font-weight: 300;
+      color: white;
+      margin: 0.75rem 0 2rem;
+      max-width: 20ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.75rem;
+      background: var(--gold);
+      color: white;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline-white {
+      display: inline-block;
+      padding: 1rem 2.75rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: white;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-left: 1rem;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-outline-white:hover {
+      border-color: white;
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-white:active { transform: translateY(0); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--brown);
+      color: rgba(247,242,234,0.6);
+      padding: 5rem 6rem 3rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.8125rem;
+      line-height: 1.75;
+      max-width: 28ch;
+    }
+
+    .footer-col h4 {
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-col a {
+      font-size: 0.8125rem;
+      color: rgba(247,242,234,0.55);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover { color: var(--cream); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(247,242,234,0.1);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.6875rem;
+      color: rgba(247,242,234,0.3);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { display: none; }
+
+      .intro-strip {
+        grid-template-columns: 1fr;
+        padding: 4rem 2rem;
+        gap: 2rem;
+      }
+
+      .stats-bar { grid-template-columns: repeat(3, 1fr); }
+      .stat-item:nth-child(3) { border-right: none; }
+      .stat-item:nth-child(4) { border-top: 1px solid var(--cream-dk); }
+
+      .split-section { grid-template-columns: 1fr; min-height: auto; }
+      .split-section.reverse { direction: ltr; }
+      .split-img { height: 60vw; }
+      .split-text { padding: 3rem 2rem; }
+      .split-section.reverse .split-text { padding: 3rem 2rem; }
+
+      .gallery-section { padding: 3rem 2rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item { height: 220px; }
+
+      .plans-section { padding: 3rem 2rem; }
+      .plans-grid { grid-template-columns: 1fr 1fr; }
+
+      .hero-content { padding: 3rem 2rem; }
+      .hero-scroll { right: 2rem; }
+
+      footer { padding: 3rem 2rem 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--cream-dk); border-right: 1px solid var(--cream-dk); }
+      .stat-item:nth-child(4) { border-right: none; }
+      .stat-item:nth-child(5) { border-top: 1px solid var(--cream-dk); border-right: none; }
+
+      .gallery-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .cta-content h2 { font-size: 2rem; }
+      .btn-outline-white { margin-left: 0; margin-top: 0.75rem; display: block; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav>
+    <a href="#" class="nav-logo">Villa Lumière</a>
+    <ul class="nav-links">
+      <li><a href="#arquitectura">Arquitectura</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#plantas">Plantas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="nav-cta">Agendar Visita</a>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <img src="Images/Vista2.jpg" alt="Vista aérea da moradia com piscina" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Moradia Exclusiva &nbsp;·&nbsp; Caxias, Alto do Lagoal</p>
+      <h1>Uma Obra <em>de Arquitectura</em><br/>com Vistas para o Mar</h1>
+    </div>
+    <div class="hero-scroll">
+      <span>Explorar</span>
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+        <line x1="8" y1="2" x2="8" y2="18" stroke="white" stroke-width="1.5" stroke-opacity="0.7"/>
+        <polyline points="3,13 8,19 13,13" stroke="white" stroke-width="1.5" stroke-opacity="0.7" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══ INTRO ══ -->
+  <section class="intro-strip">
+    <div>
+      <p class="eyebrow">Sobre a Propriedade</p>
+      <span class="gold-line"></span>
+      <h2>Arquitectura Contemporânea<br/>no Alto do Lagoal, Caxias</h2>
+    </div>
+    <div>
+      <p>
+        Uma moradia de excepção, concebida para quem valoriza o equilíbrio perfeito entre design contemporâneo e a privilegiada localização de Caxias. Situada no Alto do Lagoal, com vistas deslumbrantes sobre o estuário do Tejo, esta propriedade oferece um estilo de vida sem compromissos.
+      </p>
+      <p style="margin-top:1rem;">
+        Construída com os mais exigentes padrões de qualidade, cada detalhe foi pensado para criar espaços que unem elegância e funcionalidade — do imponente hall de entrada ao terraço com panorâmica sobre o Tejo.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ STATS BAR ══ -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value">3</span>
+      <span class="stat-label">Quartos em Suite</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">6</span>
+      <span class="stat-label">Casas de Banho</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">480</span>
+      <span class="stat-label">m² Construídos</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">750</span>
+      <span class="stat-label">m² Terreno</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">3</span>
+      <span class="stat-label">Pisos + Cobertura</span>
+    </div>
+  </div>
+
+  <!-- ══ SPLIT: Arquitectura ══ -->
+  <section id="arquitectura" class="split-section">
+    <div class="split-img">
+      <img src="Images/Vista3.jpg" alt="Vista exterior da moradia" />
+    </div>
+    <div class="split-text">
+      <p class="eyebrow">Arquitectura &amp; Design</p>
+      <span class="gold-line"></span>
+      <h2>Forma que Dialoga<br/>com a Paisagem</h2>
+      <p>
+        A linguagem arquitectónica parte de volumes brancos puros, cujas linhas horizontais se estendem sobre o lote para captar a luz do Atlântico. A fachada em betão aparente polido contrasta com os caixilhos em alumínio termolacado e os planos envidraçados que dissolvem os limites entre interior e exterior.
+      </p>
+      <ul class="feature-list">
+        <li>Fachada em estuque mineral de alta durabilidade</li>
+        <li>Caixilharia de alta performance térmica e acústica</li>
+        <li>Cobertura acessível com deck em madeira exótica</li>
+        <li>Iluminação arquitectónica integrada</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ SPLIT: Piso 1 Interior ══ -->
+  <section class="split-section reverse">
+    <div class="split-img">
+      <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
+        <source src="Images/kling_20260327_VIDEO_Takeas_the_101_0.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="split-text">
+      <p class="eyebrow">Piso 1 &amp; Interiores</p>
+      <span class="gold-line"></span>
+      <h2>Sala, Cozinha<br/>e Escritório</h2>
+      <p>
+        O piso 1 concentra a vida social da casa: uma sala de estar generosa com lareira a gás e parede em travertino, cozinha totalmente equipada com ilha em pedra natural e abertura para a sala de jantar, e um escritório privativo com casa de banho própria. Todos os espaços comunicam entre si e com o exterior através de amplos envidraçados.
+      </p>
+      <ul class="feature-list">
+        <li>Sala de estar com lareira e parede em travertino</li>
+        <li>Cozinha totalmente equipada com ilha em pedra</li>
+        <li>Sala de jantar integrada na cozinha</li>
+        <li>Escritório privativo com casa de banho privativa</li>
+        <li>Casa de banho social junto à sala de estar</li>
+        <li>Sala de jogos e lazer</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ SPLIT: Piscina & Jardim ══ -->
+  <section class="split-section">
+    <div class="split-img">
+      <img src="Images/Piso1_6.jpg" alt="Piscina e jardim" />
+    </div>
+    <div class="split-text">
+      <p class="eyebrow">Piso 1 &amp; Exterior</p>
+      <span class="gold-line"></span>
+      <h2>Piscina Privativa<br/>e Jardim Paisagístico</h2>
+      <p>
+        O piso 1 abre-se para uma ampla zona de lazer com piscina privativa, uma sala de jogos e lazer, rodeada por jardim de baixa manutenção. O espaço de living exterior revela-se uma sala de estar a céu aberto, enquadrada pelas vistas sobre o Tejo e a orla ribeirinha de Caxias.
+      </p>
+      <ul class="feature-list">
+        <li>Piscina 10 × 4 m com filtração automática</li>
+        <li>Jardim paisagístico de baixa manutenção</li>
+        <li>Sistema de rega automático e iluminação LED</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ FULL: Rooftop ══ -->
+  <div class="full-img">
+    <img src="Images/Rooftop2.jpg" alt="Terraço com vista para o estuário do Tejo" />
+    <span class="caption">Terraço privativo — Vista sobre o estuário do Tejo, Caxias e o oceano</span>
+  </div>
+
+  <!-- ══ SPLIT: Interior ══ -->
+  <section class="split-section reverse">
+    <div class="split-img">
+      <img src="Images/Pido2_8.jpg" alt="Quarto master com vista mar" />
+    </div>
+    <div class="split-text">
+      <p class="eyebrow">Interior &amp; Acabamentos</p>
+      <span class="gold-line"></span>
+      <h2>Interiores que<br/>Abraçam o Horizonte</h2>
+      <p>
+        As 3 suites foram projectadas como santuários privados, com piso em madeira de carvalho de espinha portuguesa e envidraçados do chão ao tecto que enquadram as vistas sobre o Tejo como uma pintura viva. Os revestimentos combinam textura natural com leveza mineral.
+      </p>
+      <ul class="feature-list">
+        <li>Pavimento em carvalho natural de espinha portuguesa</li>
+        <li>Paredes em microcimento polido</li>
+        <li>Caixilharia com vidro triplo e corte térmico</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ SPLIT: Cobertura ══ -->
+  <section class="split-section">
+    <div class="split-img">
+      <img src="Images/Piso2_1.jpg" alt="Terraço do 2.º piso com pérgola" />
+    </div>
+    <div class="split-text">
+      <p class="eyebrow">Piso 2 &amp; Cobertura</p>
+      <span class="gold-line"></span>
+      <h2>Terraço Panorâmico<br/>com Deck em Madeira</h2>
+      <p>
+        O piso 2 funciona como uma suite privativa com acesso directo a um terraço revestido em deck de madeira, com acesso a um jardim superior, criando uma atmosfera íntima com panorâmica de 180º sobre a cidade e o mar.
+      </p>
+      <ul class="feature-list">
+        <li>3 suites, uma com closet integrado</li>
+        <li>Terraço privativo de 45 m²</li>
+        <li>Cobertura acessível ao nível superior</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ SPLIT: Acesso ══ -->
+  <section class="split-section reverse">
+    <div class="split-img">
+      <img src="Images/Piso0_3.jpg" alt="Acesso e garagem da moradia" />
+    </div>
+    <div class="split-text">
+      <p class="eyebrow">Piso 0 &amp; Serviços</p>
+      <span class="gold-line"></span>
+      <h2>Entrada Nobre para<br/>Garagem e Jardim</h2>
+      <p>
+        O acesso à moradia é marcado por uma entrada generosa para a garagem, ladeada por vegetação mediterrânica madura. A garagem fechada com capacidade para dois/três veículos, complementada por uma área de arrumos, uma área técnica e uma casa de banho completa, confere toda a funcionalidade a um programa habitacional de excepção.
+      </p>
+      <ul class="feature-list">
+        <li>Garagem fechada para 2/3 viaturas</li>
+        <li>Zona de estacionamento coberto exterior</li>
+        <li>Casa de banho completa no piso da garagem</li>
+        <li>Portão automático com video-porteiro</li>
+        <li>Sala de arrumos e sala técnica</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ GALLERY ══ -->
+  <section id="galeria" class="gallery-section">
+    <div class="gallery-header">
+      <p class="eyebrow">Galeria</p>
+      <span class="gold-line gold-line-center"></span>
+      <h2>Cada Espaço,<br/><em>Uma Experiência</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="Images/Piso1_7.jpg" alt="Sala de estar com lareira e parede em travertino" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Piso1_10.jpg" alt="Cozinha aberta para sala de jantar" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Piso1_11.jpg" alt="Detalhe da cozinha com ilha em pedra" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Piso1_9.jpg" alt="Cozinha com ilha e bancos em madeira" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Piso1_2.jpg" alt="Escritório privativo com ligação ao jardim" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Piso1_14.jpg" alt="Escritório com vista para o exterior" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Pido2_11.jpg" alt="Casa de banho em mármore com banheira freestanding" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Piso1_12.jpg" alt="Casa de banho em pedra natural" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Pido2_13.jpg" alt="Suite com casa de banho integrada" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Pido2_6.jpg" alt="Quarto com closet integrado" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Pido2_9.jpg" alt="Quarto com vista para o terraço" />
+      </div>
+      <div class="gallery-item">
+        <img src="Images/Piso2_4.jpg" alt="Vista do terraço para o interior" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FLOOR PLANS ══ -->
+  <section id="plantas" class="plans-section">
+    <div class="plans-header">
+      <p class="eyebrow">Plantas</p>
+      <span class="gold-line gold-line-center"></span>
+      <h2>Distribuição dos Pisos</h2>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <img src="Images/Planta1.jpg" alt="Planta — Piso 0" />
+        <div class="plan-card-label">Planta — Cobertura</div>
+      </div>
+      <div class="plan-card">
+        <img src="Images/Planta2.jpg" alt="Planta — Piso 2" />
+        <div class="plan-card-label">Planta — Piso 2</div>
+      </div>
+      <div class="plan-card">
+        <img src="Images/Planta3.jpg" alt="Planta — Piso 1" />
+        <div class="plan-card-label">Planta — Piso 1</div>
+      </div>
+      <div class="plan-card">
+        <img src="Images/Planta4.jpg" alt="Planta — Piso 0" />
+        <div class="plan-card-label">Planta — Piso 0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <section id="contacto" class="cta-section">
+    <video autoplay muted loop playsinline>
+      <source src="Images/kling_20260327_VIDEO_Takeas_the_434_0.mp4" type="video/mp4" />
+    </video>
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+      <p class="eyebrow">Disponível para Visita</p>
+      <h2>Descubra esta<br/><em>Propriedade Única</em></h2>
+      <div>
+        <a href="mailto:info@villalumierealmada.pt" class="btn-primary">Contactar Mediador</a>
+        <a href="#galeria" class="btn-outline-white">Ver Galeria</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">Villa Lumière</span>
+        <p>Moradia de arquitectura contemporânea com piscina privativa, terraço panorâmico e vistas sobre o estuário do Tejo e Lisboa.</p>
+        <span class="gold-line" style="margin-top:1.5rem;"></span>
+        <p style="font-size:0.75rem;margin-top:0.75rem;">Caxias, Alto do Lagoal — Oeiras</p>
+      </div>
+      <div class="footer-col">
+        <h4>A Propriedade</h4>
+        <ul>
+          <li><a href="#arquitectura">Arquitectura</a></li>
+          <li><a href="#galeria">Galeria de Imagens</a></li>
+          <li><a href="#plantas">Plantas</a></li>
+          <li><a href="#contacto">Agendar Visita</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Características</h4>
+        <ul>
+          <li><a href="#">T4 · 480 m²</a></li>
+          <li><a href="#">Piscina Privativa</a></li>
+          <li><a href="#">Terraço Panorâmico</a></li>
+          <li><a href="#">Garagem Fechada</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+351910000000">+351 910 000 000</a></li>
+          <li><a href="mailto:info@villalumierealmada.pt">info@villalumierealmada.pt</a></li>
+          <li><a href="#">Segunda–Sexta 9h–18h</a></li>
+          <li><a href="#">Sábado 10h–14h</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Villa Lumière · Todos os direitos reservados</span>
+      <span>Mediação Imobiliária · AMI 00000</span>
+    </div>
+  </footer>
+
+</body>
+</html>
